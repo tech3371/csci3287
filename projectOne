@@ -1,5 +1,6 @@
 
-2. select employeeNumber, lastName,firstName, extension,officeCode  from employees where officeCode = 4;
+2. select employeeNumber, lastName,firstName, extension,officeCode  
+    from employees where officeCode = 4;
 +----------------+-----------+-----------+-----------+------------+
 | employeeNumber | lastName  | firstName | extension | officeCode |
 +----------------+-----------+-----------+-----------+------------+
@@ -12,7 +13,8 @@
 5 rows in set (0.00 sec)
 
 
-4. select  productCode,productName,productVendor, buyPrice, MSRP from products where msrp=(select min(MSRP) from products);
+4. select  productCode,productName,productVendor, buyPrice, MSRP 
+    from products where msrp=(select min(MSRP) from products);
 +-------------+-----------------------------+-------------------------+----------+-------+
 | productCode | productName                 | productVendor           | buyPrice | MSRP  |
 +-------------+-----------------------------+-------------------------+----------+-------+
@@ -20,7 +22,8 @@
 +-------------+-----------------------------+-------------------------+----------+-------+
 1 row in set (0.01 sec)
 
-6. select country, count(customerNumber) as num from customers group by country having num >= 5 order by 2 desc;
+6. select country, count(customerNumber) as num 
+    from customers group by country having num >= 5 order by 2 desc;
 +-----------+-----+
 | country   | num |
 +-----------+-----+
@@ -33,7 +36,8 @@
 +-----------+-----+
 6 rows in set (0.01 sec)
 
-8. select employeeNumber, concat(lastName,', ', firstName) as "Employees that report to Anthony Bow" from employees where reportsTo = 1143;
+8. select employeeNumber, concat(lastName,', ', firstName) as "Employees that report to Anthony Bow" 
+    from employees where reportsTo = 1143;
 +----------------+--------------------------------------+
 | employeeNumber | Employees that report to Anthony Bow |
 +----------------+--------------------------------------+
@@ -50,7 +54,8 @@
 
 12.
 
-14. select customername, sum(quantityordered) as totalq from customers c, orderdetails d, orders o where c.customernumber = o.customernumber and o.ordernumber = d.ordernumber 	
+14. select customername, sum(quantityordered) as totalq 
+    from customers c, orderdetails d, orders o where c.customernumber = o.customernumber and o.ordernumber = d.ordernumber 	
     group by customername having totalq > 2000;
 
 +------------------------------+--------+
@@ -61,7 +66,10 @@
 +------------------------------+--------+
 2 rows in set (0.01 sec)
 
-16. insert into TopCustomers ( customerNumber , contactDate,orderTotal) select customerNumber,'2018/10/20', sum(quantityOrdered * priceEach) as totalPrice from orderDetails d, orders o where d.orderNumber = o.orderNumber group by customerNumber having totalPrice > 150000;
+16. insert into TopCustomers ( customerNumber , contactDate,orderTotal) 
+    select customerNumber,'2018/10/20', sum(quantityOrdered * priceEach) as totalPrice 
+    from orderDetails d, orders o where d.orderNumber = o.orderNumber 
+    group by customerNumber having totalPrice > 150000;
 +----------------+-------------+------------+
 | customerNumber | contactDate | orderTotal |
 +----------------+-------------+------------+
