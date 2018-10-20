@@ -1,0 +1,92 @@
+
+2. select employeeNumber, lastName,firstName, extension,officeCode  from employees where officeCode = 4;
++----------------+-----------+-----------+-----------+------------+
+| employeeNumber | lastName  | firstName | extension | officeCode |
++----------------+-----------+-----------+-----------+------------+
+|           1102 | Bondur    | Gerard    | x5408     | 4          |
+|           1337 | Bondur    | Loui      | x6493     | 4          |
+|           1370 | Hernandez | Gerard    | x2028     | 4          |
+|           1401 | Castillo  | Pamela    | x2759     | 4          |
+|           1702 | Gerard    | Martin    | x2312     | 4          |
++----------------+-----------+-----------+-----------+------------+
+5 rows in set (0.00 sec)
+
+
+4. select  productCode,productName,productVendor, buyPrice, MSRP from products where msrp=(select min(MSRP) from products);
++-------------+-----------------------------+-------------------------+----------+-------+
+| productCode | productName                 | productVendor           | buyPrice | MSRP  |
++-------------+-----------------------------+-------------------------+----------+-------+
+| S24_1937    | 1939 Chevrolet Deluxe Coupe | Motor City Art Classics |    22.57 | 33.19 |
++-------------+-----------------------------+-------------------------+----------+-------+
+1 row in set (0.01 sec)
+
+6. select country, count(customerNumber) as num from customers group by country having num >= 5 order by 2 desc;
++-----------+-----+
+| country   | num |
++-----------+-----+
+| USA       |  36 |
+| Germany   |  13 |
+| France    |  12 |
+| Spain     |   7 |
+| UK        |   5 |
+| Australia |   5 |
++-----------+-----+
+6 rows in set (0.01 sec)
+
+8. select employeeNumber, concat(lastName,', ', firstName) as "Employees that report to Anthony Bow" from employees where reportsTo = 1143;
++----------------+--------------------------------------+
+| employeeNumber | Employees that report to Anthony Bow |
++----------------+--------------------------------------+
+|           1165 | Jennings, Leslie                     |
+|           1166 | Thompson, Leslie                     |
+|           1188 | Firrelli, Julie                      |
+|           1216 | Patterson, Steve                     |
+|           1286 | Tseng, Foon Yue                      |
+|           1323 | Vanauf, George                       |
++----------------+--------------------------------------+
+6 rows in set (0.00 sec)
+
+10. 
+
+12.
+
+14. select customername, sum(quantityordered) as totalq from customers c, orderdetails d, orders o where c.customernumber = o.customernumber and o.ordernumber = d.ordernumber 	
+    group by customername having totalq > 2000;
+
++------------------------------+--------+
+| customername                 | totalq |
++------------------------------+--------+
+| Euro+ Shopping Channel       |   9327 |
+| Mini Gifts Distributors Ltd. |   6366 |
++------------------------------+--------+
+2 rows in set (0.01 sec)
+
+16. insert into TopCustomers ( customerNumber , contactDate,orderTotal) select customerNumber,'2018/10/20', sum(quantityOrdered * priceEach) as totalPrice from orderDetails d, orders o where d.orderNumber = o.orderNumber group by customerNumber having totalPrice > 150000;
++----------------+-------------+------------+
+| customerNumber | contactDate | orderTotal |
++----------------+-------------+------------+
+|            114 | 2018-10-20  |  180585.07 |
+|            119 | 2018-10-20  |  158573.12 |
+|            124 | 2018-10-20  |  591827.34 |
+|            141 | 2018-10-20  |  820689.54 |
+|            148 | 2018-10-20  |  156251.03 |
+|            151 | 2018-10-20  |  177913.95 |
+|            323 | 2018-10-20  |  154622.08 |
++----------------+-------------+------------+
+7 rows in set (0.00 sec)
+
+18. alter table TopCustomers add OrderCount int;
++----------------+-------------+------------+------------+
+| customerNumber | contactDate | orderTotal | OrderCount |
++----------------+-------------+------------+------------+
+|            114 | 2018-10-20  |  180585.07 |       NULL |
+|            119 | 2018-10-20  |  158573.12 |       NULL |
+|            124 | 2018-10-20  |  591827.34 |       NULL |
+|            141 | 2018-10-20  |  820689.54 |       NULL |
+|            148 | 2018-10-20  |  156251.03 |       NULL |
+|            151 | 2018-10-20  |  177913.95 |       NULL |
+|            323 | 2018-10-20  |  154622.08 |       NULL |
++----------------+-------------+------------+------------+
+7 rows in set (0.00 sec)
+
+20. 
