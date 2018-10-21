@@ -50,8 +50,36 @@
 +----------------+--------------------------------------+
 6 rows in set (0.00 sec)
 
-#for this problem, I don't know how to get year value
 10. 
+#first create table
+create table car(
+	caryear int,
+    productCode varchar(8)
+    
+);
+
+#add year value
+insert into car(carYear,productCode)
+select substring_index(productName,' ',1) ,productCode from products 
+where productLine = 'Classic Cars';
+
+#select only 1950's classic car
+select p.productName ,caryear 
+from products p, car c where (c.productCode = p.productCode) 
+group by p.productName having (caryear > '1950' and caryear <'1960');
+
++-------------------------------------+---------+
+| productName                         | caryear |
++-------------------------------------+---------+
+| 1952 Alpine Renault 1300            |    1952 |
+| 1952 Citroen-15CV                   |    1952 |
+| 1956 Porsche 356A Coupe             |    1956 |
+| 1957 Corvette Convertible           |    1957 |
+| 1957 Ford Thunderbird               |    1957 |
+| 1958 Chevy Corvette Limited Edition |    1958 |
++-------------------------------------+---------+
+6 rows in set (0.00 sec)
+
 
 #12 should work, but it's not. need to check on this
 12. select firstName, lastName, employeeNumber  
