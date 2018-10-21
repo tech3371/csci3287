@@ -50,9 +50,28 @@
 +----------------+--------------------------------------+
 6 rows in set (0.00 sec)
 
+#for this problem, I don't know how to get year value
 10. 
 
-12.
+#12 should work, but it's not. need to check on this
+12. select firstName, lastName, employeeNumber  
+    from employees e where employeeNumber not in 
+    (select salesRepEmployeeNumber 
+    from customers c 
+    where c.salesRepEmployeeNumber = e.employeeNumber);
++-----------+-----------+----------------+
+| firstName | lastName  | employeeNumber |
++-----------+-----------+----------------+
+| Diane     | Murphy    |           1002 |
+| Mary      | Patterson |           1056 |
+| Jeff      | Firrelli  |           1076 |
+| William   | Patterson |           1088 |
+| Gerard    | Bondur    |           1102 |
+| Anthony   | Bow       |           1143 |
+| Tom       | King      |           1619 |
+| Yoshimi   | Kato      |           1625 |
++-----------+-----------+----------------+
+8 rows in set (0.00 sec)
 
 14. select customername, sum(quantityordered) as totalq 
     from customers c, orderdetails d, orders o where c.customernumber = o.customernumber and o.ordernumber = d.ordernumber 	
